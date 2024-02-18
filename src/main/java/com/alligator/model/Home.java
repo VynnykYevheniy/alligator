@@ -17,12 +17,16 @@ public class Home {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
+
 	@Column(name = "title")
 	String title;
+
 	@Column(name = "description")
 	String description;
+
 	@Column(name = "image_url")
 	String imageUrl;
+
 	@Column(name = "url")
 	String url;
 }

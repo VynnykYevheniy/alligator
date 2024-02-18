@@ -19,16 +19,22 @@ public class News {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
+
 	@Column(name = "title")
 	String title;
+
 	@Column(name = "short_description")
 	String shortDescription;
+
 	@Column(name = "full_description")
 	String fullDescription;
+
 	@Column(name = "image")
 	String imageUrl;
+
 	@Column(name = "date")
 	Date date;
+
 	@Column(name = "url")
 	String url;
 }

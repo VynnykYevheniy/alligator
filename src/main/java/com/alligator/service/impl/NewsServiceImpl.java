@@ -4,7 +4,6 @@ import com.alligator.dto.NewsDTO;
 import com.alligator.mapper.NewsMapper;
 import com.alligator.repository.NewsRepository;
 import com.alligator.service.NewsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +12,13 @@ import java.util.NoSuchElementException;
 
 @Service
 public class NewsServiceImpl implements NewsService {
-	@Autowired
-	NewsRepository newsRepository;
-	@Autowired
-	NewsMapper newsMapper;
+	private final NewsRepository newsRepository;
+	private final NewsMapper newsMapper;
+
+	public NewsServiceImpl(NewsRepository newsRepository, NewsMapper newsMapper) {
+		this.newsRepository = newsRepository;
+		this.newsMapper = newsMapper;
+	}
 
 	@Override
 	public List<NewsDTO> findAll() {
