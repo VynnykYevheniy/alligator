@@ -5,6 +5,7 @@ import com.alligator.mapper.HomeMapper;
 import com.alligator.repository.HomeRepository;
 import com.alligator.service.HomeService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class HomeServiceImpl implements HomeService {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<HomeDTO> findAll() {
 		return homeMapper.toDto(homeRepository.findAll());
 	}

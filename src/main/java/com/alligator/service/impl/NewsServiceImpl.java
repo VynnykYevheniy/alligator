@@ -6,6 +6,7 @@ import com.alligator.repository.NewsRepository;
 import com.alligator.service.NewsService;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -21,16 +22,19 @@ public class NewsServiceImpl implements NewsService {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<NewsDTO> findAll() {
 		return newsMapper.toDto(newsRepository.findAll());
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<NewsDTO> findAllSortByDate() {
 		return newsMapper.toDto(newsRepository.findAll(Sort.by(Sort.Direction.DESC, "date")));
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public NewsDTO findById(Long id) {
 		return newsMapper.toDto(newsRepository.findById(id)
 				.orElseThrow(() -> new NoSuchElementException("News with id " + id + " was not found")));
