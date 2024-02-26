@@ -1,8 +1,5 @@
 package com.alligator.mapper;
 
-import com.alligator.dto.HomeDTO;
-import com.alligator.model.Home;
-
 import java.util.List;
 
 public interface CoreMapper<M,D> {
