@@ -10,5 +10,5 @@ COPY . /alligator/
 # Соберите JAR-файл внутри контейнера
 RUN mvn clean package
 
-# Команда для запуска приложения (замените "wordsmarty-api-1.0.jar" на имя вашего JAR-файла)
+# Команда для запуска приложения (замените "alligator-api-1.0.jar" на имя вашего JAR-файла)
 CMD ["java", "-jar", "target/alligator-0.1.jar"]
