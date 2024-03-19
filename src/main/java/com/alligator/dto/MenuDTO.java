@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -13,9 +14,9 @@ import java.util.List;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class MenuDTO {
-	Long id;
-	String name;
-	String url;
-	int position;
-	List<MenuDTO> subMenu;
+    Long id;
+    String name;
+    String url;
+    int position;
+    List<MenuDTO> subMenu = new ArrayList<>();
 }
