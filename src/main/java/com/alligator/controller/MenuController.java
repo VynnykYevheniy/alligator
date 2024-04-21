@@ -16,9 +16,14 @@ public class MenuController {
 		this.menuService = menuService;
 	}
 
-	@GetMapping("/sidebar")
+	@GetMapping()
 	public List<MenuDTO> getMenu() {
 		return menuService.findAll();
+	}
+
+	@GetMapping("/sidebar")
+	public List<MenuDTO> getSideBar() {
+		return menuService.findSideBar();
 	}
 
 	@PostMapping("/create")

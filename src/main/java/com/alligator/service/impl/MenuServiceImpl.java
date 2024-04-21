@@ -3,6 +3,7 @@ package com.alligator.service.impl;
 import com.alligator.dto.MenuDTO;
 import com.alligator.mapper.MenuMapper;
 import com.alligator.model.Menu;
+import com.alligator.model.enumeration.MenuType;
 import com.alligator.repository.MenuRepository;
 import com.alligator.service.MenuService;
 import jakarta.persistence.EntityNotFoundException;
@@ -28,7 +29,14 @@ public class MenuServiceImpl implements MenuService {
 	@Override
 	@Transactional(readOnly = true)
 	public List<MenuDTO> findAll() {
-		return sortByPosition(menuRepository.findAllByParentIsNull().stream()
+		return sortByPosition(menuRepository.findAllByParentIsNullAndType(MenuType.MAIN).stream()
+				.map(menuMapper::toDto)
+				.collect(Collectors.toList()));
+	}
+
+	@Override
+	public List<MenuDTO> findSideBar() {
+		return sortByPosition(menuRepository.findAllByParentIsNullAndType(MenuType.SIDEBAR).stream()
 				.map(menuMapper::toDto)
 				.collect(Collectors.toList()));
 	}

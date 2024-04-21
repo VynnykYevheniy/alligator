@@ -1,5 +1,6 @@
 package com.alligator.model;
 
+import com.alligator.model.enumeration.MenuType;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -30,6 +31,9 @@ public class Menu {
 
 	@Column(name = "position")
 	int position;
+
+	@Column(name = "type")
+	MenuType type;
 
 	@ManyToOne
 	@JoinColumn(name = "parent")

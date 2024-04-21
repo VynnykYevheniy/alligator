@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface MenuService {
 	List<MenuDTO> findAll();
+	List<MenuDTO> findSideBar();
 
 	List<MenuDTO> save(List<MenuDTO> menu);
 
