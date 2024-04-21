@@ -1,6 +1,8 @@
 package com.alligator.service.impl;
 
+import com.alligator.dto.NewsCardDTO;
 import com.alligator.dto.NewsDTO;
+import com.alligator.mapper.NewsCardMapper;
 import com.alligator.mapper.NewsMapper;
 import com.alligator.repository.NewsRepository;
 import com.alligator.service.NewsService;
@@ -15,22 +17,18 @@ import java.util.NoSuchElementException;
 public class NewsServiceImpl implements NewsService {
 	private final NewsRepository newsRepository;
 	private final NewsMapper newsMapper;
+	private final NewsCardMapper newsCardMapper;
 
-	public NewsServiceImpl(NewsRepository newsRepository, NewsMapper newsMapper) {
+	public NewsServiceImpl(NewsRepository newsRepository, NewsMapper newsMapper, NewsCardMapper newsCardMapper) {
 		this.newsRepository = newsRepository;
 		this.newsMapper = newsMapper;
+		this.newsCardMapper = newsCardMapper;
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<NewsDTO> findAll() {
-		return newsMapper.toDto(newsRepository.findAll());
-	}
-
-	@Override
-	@Transactional(readOnly = true)
-	public List<NewsDTO> findAllSortByDate() {
-		return newsMapper.toDto(newsRepository.findAll(Sort.by(Sort.Direction.DESC, "date")));
+	public List<NewsCardDTO> findAll() {
+		return newsCardMapper.toDto(newsRepository.findAll(Sort.by(Sort.Direction.DESC, "date")));
 	}
 
 	@Override

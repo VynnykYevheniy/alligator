@@ -30,11 +30,8 @@ public class News {
 	String fullDescription;
 
 	@Column(name = "image")
-	String imageUrl;
+	String src;
 
 	@Column(name = "date")
 	Date date;
-
-	@Column(name = "url")
-	String url;
 }

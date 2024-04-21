@@ -1,5 +1,6 @@
 package com.alligator.controller;
 
+import com.alligator.dto.NewsCardDTO;
 import com.alligator.dto.NewsDTO;
 import com.alligator.service.NewsService;
 import org.springframework.http.MediaType;
@@ -17,15 +18,9 @@ public class NewsController {
 	}
 
 	@GetMapping
-	public List<NewsDTO> getAll() {
+	public List<NewsCardDTO> getAll() {
 		return newsService.findAll();
 	}
-
-	@GetMapping("/desc")
-	public List<NewsDTO> getAllByDateDesc() {
-		return newsService.findAllSortByDate();
-	}
-
 	@PostMapping("/{id}")
 	public NewsDTO getById(@PathVariable("id") Long id) {
 		return newsService.findById(id);
