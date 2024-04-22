@@ -21,7 +21,7 @@ public class NewsController {
 	public List<NewsCardDTO> getAll() {
 		return newsService.findAll();
 	}
-	@PostMapping("/{id}")
+	@GetMapping("/{id}")
 	public NewsDTO getById(@PathVariable("id") Long id) {
 		return newsService.findById(id);
 	}
