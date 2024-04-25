@@ -8,25 +8,20 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 @Entity
-@Table(name = "home")
+@Table(name = "slider")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Home {
+public class Slider {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
 
-	@Column(name = "title")
-	String title;
+	@Column(name = "position")
+	int position;
 
-	@Column(name = "description")
-	String description;
+	@Column(name = "source")
+	String src;
 
-	@Column(name = "image_url")
-	String imageUrl;
-
-	@Column(name = "url")
-	String url;
 }

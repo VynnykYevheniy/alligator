@@ -1,6 +1,6 @@
 package com.alligator.model;
 
-import com.alligator.model.enumeration.MenuType;
+import com.alligator.model.enumeration.MenuCategory;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -18,7 +18,6 @@ import java.util.List;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Menu {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
@@ -32,8 +31,9 @@ public class Menu {
 	@Column(name = "position")
 	int position;
 
-	@Column(name = "type")
-	MenuType type;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "category")
+	MenuCategory category;
 
 	@ManyToOne
 	@JoinColumn(name = "parent")

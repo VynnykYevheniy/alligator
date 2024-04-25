@@ -19,7 +19,7 @@ public class HomeController {
 	}
 
 	@GetMapping
-	public List<HomeDTO> getAll() {
-		return homeService.findAll();
+	public HomeDTO getAll() {
+		return homeService.find();
 	}
 }

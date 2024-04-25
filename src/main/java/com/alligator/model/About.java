@@ -1,6 +1,6 @@
 package com.alligator.model;
 
-import com.alligator.model.enumeration.ImageCategory;
+import com.alligator.model.enumeration.AboutCategory;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -9,23 +9,26 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 @Entity
-@Table(name = "image")
+@Table(name = "about")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Image {
+public class About {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
 
-	@Column(name = "content")
-	byte[] content;
+	@Column(name = "icon_url")
+	String iconUrl;
 
-	@Column(name = "media_type")
-	String mediaType;
+	@Column(name = "title")
+	String title;
+
+	@Column(name = "description", columnDefinition = "TEXT", length = 65535)
+	String description;
 
 	@Column(name = "category")
 	@Enumerated(EnumType.STRING)
-	ImageCategory category;
+	AboutCategory category;
 }
