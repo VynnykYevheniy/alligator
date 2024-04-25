@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class HomeDTO {
-	List<SliderDTO> sideBar = new ArrayList<>();
+	List<SliderDTO> slider = new ArrayList<>();
 	AboutDTO about;
 	List<BusinessCardDTO> business = new ArrayList<>();
 }
