@@ -10,7 +10,7 @@ public enum BusinessCategory {
     RESTAURANT("restaurant", "Ресторан"),
     SAUNA("sauna", "Сауна"),
     SPA("spa", "SPA"),
-    TOURISM("tourism", "ТУРИЗМ");
+    TOURISM("tourism", "Туризм");
 
     private final String name;
     private final String uaName;

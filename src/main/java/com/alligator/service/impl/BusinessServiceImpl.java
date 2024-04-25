@@ -8,6 +8,7 @@ import com.alligator.model.enumeration.BusinessCategory;
 import com.alligator.repository.BusinessRepository;
 import com.alligator.service.BusinessService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class BusinessServiceImpl implements BusinessService {
 
     @Override
     public List<BusinessCardDTO> findAll() {
-        return businessCardMapper.toDto(businessRepository.findAll());
+        return businessCardMapper.toDto(businessRepository.findAll(Sort.by(Sort.Direction.ASC, "position")));
     }
 
     @Override

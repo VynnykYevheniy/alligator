@@ -16,10 +16,10 @@ import java.util.List;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class BusinessDTO {
-    String iconUrl;
-    String name;
-    String description;
-    List<BusinessCardDTO> subBusinessCard = new ArrayList<>();
-    Contact contact;
-    List<Image> gallery = new ArrayList<>();
+	String src;
+	String name;
+	String description;
+	Contact contact;
+	List<BusinessCardDTO> subBusinessCard = new ArrayList<>();
+	List<Image> gallery = new ArrayList<>();
 }

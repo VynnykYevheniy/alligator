@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table
+@Table(name = "business")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,17 +26,20 @@ public class Business {
 	String name;
 
 	@Column(name = "type")
+	@Enumerated(EnumType.STRING)
 	BusinessCategory type;
 
 	@Column(name = "icon_url")
-	String iconUrl;
+	String src;
 
 	@Embedded
-	@Column(name = "contact")
 	Contact contact;
 
-	@Column(name = "description")
-	String description;
+	@Column(name = "short_description", columnDefinition = "TEXT")
+	String shortDescription;
+
+	@Column(name = "full_description", columnDefinition = "TEXT")
+	String fullDescription;
 
 	@Column(name = "position")
 	int position;

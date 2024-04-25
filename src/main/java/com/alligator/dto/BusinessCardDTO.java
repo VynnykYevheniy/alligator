@@ -11,7 +11,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class BusinessCardDTO {
-	String iconUrl;
+	String src;
 	String name;
 	String description;
 	int position;
