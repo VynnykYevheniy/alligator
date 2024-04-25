@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+src/main/resources/index.html
+src/main/resources/text
+src/main/resources/Структура Послуг

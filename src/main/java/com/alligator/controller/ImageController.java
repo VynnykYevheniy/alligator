@@ -1,6 +1,7 @@
 package com.alligator.controller;
 
 import com.alligator.model.Image;
+import com.alligator.model.enumeration.ImageCategory;
 import com.alligator.service.ImageService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,11 +21,11 @@ public class ImageController {
 	}
 
 	@PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public ResponseEntity<?> uploadImage(@RequestParam("image") MultipartFile file) {
+	public ResponseEntity<?> uploadImage(@RequestParam("image") MultipartFile file, @RequestParam("category") ImageCategory category) {
 		try {
 			String mediaType = file.getContentType();
 			byte[] content = file.getBytes();
-			Image savedImage = imageService.save(new Image(null, content, mediaType));
+			Image savedImage = imageService.save(new Image(null, content, mediaType, category));
 			return savedImage == null
 					? ResponseEntity.internalServerError().build()
 					: ResponseEntity.ok().build();

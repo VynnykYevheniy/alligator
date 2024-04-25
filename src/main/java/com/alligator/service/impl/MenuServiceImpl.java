@@ -3,7 +3,7 @@ package com.alligator.service.impl;
 import com.alligator.dto.MenuDTO;
 import com.alligator.mapper.MenuMapper;
 import com.alligator.model.Menu;
-import com.alligator.model.enumeration.MenuType;
+import com.alligator.model.enumeration.MenuCategory;
 import com.alligator.repository.MenuRepository;
 import com.alligator.service.MenuService;
 import jakarta.persistence.EntityNotFoundException;
@@ -29,16 +29,21 @@ public class MenuServiceImpl implements MenuService {
 	@Override
 	@Transactional(readOnly = true)
 	public List<MenuDTO> findAll() {
-		return sortByPosition(menuRepository.findAllByParentIsNullAndType(MenuType.MAIN).stream()
+		List<Menu> mainMenus = menuRepository.findAllByParentIsNullAndCategory(MenuCategory.MAIN);
+		List<MenuDTO> menuDTOs = mainMenus.stream()
 				.map(menuMapper::toDto)
-				.collect(Collectors.toList()));
+				.collect(Collectors.toList());
+		return sortByPosition(menuDTOs);
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<MenuDTO> findSideBar() {
-		return sortByPosition(menuRepository.findAllByParentIsNullAndType(MenuType.SIDEBAR).stream()
+		List<Menu> menus = menuRepository.findAllByParentIsNullAndCategory(MenuCategory.SIDEBAR);
+		List<MenuDTO> dtos = menus.stream()
 				.map(menuMapper::toDto)
-				.collect(Collectors.toList()));
+				.collect(Collectors.toList());
+		return sortByPosition(dtos);
 	}
 
 	@Override
@@ -47,18 +52,18 @@ public class MenuServiceImpl implements MenuService {
 		List<Menu> menuEntity = menu.stream()
 				.map(menuMapper::toEntity)
 				.toList();
-		reverseSave(menuEntity);
+		saveRecursively(menuEntity);
 		return sortByPosition(menuMapper.toDto(menuEntity));
 	}
 
 	@Override
 	@Transactional
 	public List<MenuDTO> update(List<MenuDTO> menu) {
-		List<Menu> menuEntity = menu.stream()
+		List<Menu> entityMenus = menu.stream()
 				.map(menuMapper::toEntity)
 				.toList();
-		reverseSave(menuEntity);
-		return sortByPosition(menuMapper.toDto(menuEntity));
+		saveRecursively(entityMenus);
+		return sortByPosition(menuMapper.toDto(entityMenus));
 	}
 
 	@Override
@@ -76,17 +81,17 @@ public class MenuServiceImpl implements MenuService {
 				.collect(Collectors.toList());
 	}
 
-	private void reverseSave(List<Menu> menus) {
+	private void saveRecursively(List<Menu> menus) {
 		for (Menu menu : menus) {
-			saveMenuRecursively(menu);
+			saveRecursively(menu);
 		}
 	}
 
-	private void saveMenuRecursively(Menu menu) {
+	private void saveRecursively(Menu menu) {
 		menu = menuRepository.save(menu);
 		for (Menu subMenu : menu.getSubMenu()) {
 			subMenu.setParent(menu);
-			saveMenuRecursively(subMenu);
+			saveRecursively(subMenu);
 		}
 	}
 }
