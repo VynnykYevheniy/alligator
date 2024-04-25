@@ -15,5 +15,5 @@ public class BusinessCardDTO {
 	String name;
 	String description;
 	int position;
-	String pathToBusiness;
+	String path;
 }
