@@ -18,6 +18,5 @@ public class NewsCardDTO {
 	String title;
 	String description;
 	String src;
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	Date date;
 }

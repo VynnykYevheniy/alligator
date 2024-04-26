@@ -2,7 +2,6 @@ package com.alligator.controller;
 
 import com.alligator.dto.MenuDTO;
 import com.alligator.service.MenuService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +12,6 @@ import java.util.List;
 public class MenuController {
 	private final MenuService menuService;
 
-	@Autowired
 	public MenuController(MenuService menuService) {
 		this.menuService = menuService;
 	}

@@ -23,5 +23,4 @@ public class Slider {
 
 	@Column(name = "source")
 	String src;
-
 }

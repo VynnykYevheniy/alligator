@@ -4,7 +4,10 @@ import com.alligator.dto.NewsCardDTO;
 import com.alligator.dto.NewsDTO;
 import com.alligator.service.NewsService;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -21,6 +24,7 @@ public class NewsController {
 	public List<NewsCardDTO> getAll() {
 		return newsService.findAll();
 	}
+
 	@GetMapping("/{id}")
 	public NewsDTO getById(@PathVariable("id") Long id) {
 		return newsService.findById(id);
