@@ -1,0 +1,42 @@
+version: '3.7'
+
+services:
+  eureka-server:
+    build:
+      context: ./
+      dockerfile: ./eureka-server/Dockerfile
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+
+  api-gateway:
+    build:
+      context: ./
+      dockerfile: ./api-gateway/Dockerfile
+    container_name: api-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - eureka-server
+      - lending-service
+      - admin-panel-service
+
+  lending-service:
+    build:
+      context: ./
+      dockerfile: ./lending-service/Dockerfile
+    container_name: lending
+    ports:
+      - "8081:8081"
+    depends_on:
+      - eureka-server
+
+  admin-panel-service:
+    build:
+      context: ./
+      dockerfile: ./admin-panel-service/Dockerfile
+    container_name: admin-panel
+    ports:
+      - "8082:8082"
+    depends_on:
+      - eureka-server
