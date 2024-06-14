@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AlligatorApplication {
+public class LendingServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AlligatorApplication.class, args);
+		SpringApplication.run(LendingServiceApplication.class, args);
 	}
 
 }
